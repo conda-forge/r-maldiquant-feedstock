@@ -1,4 +1,4 @@
-{% set version = "1.19.3" %}
+{% set version = "1.20" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,11 +12,11 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/MALDIquant_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/MALDIquant/MALDIquant_{{ version }}.tar.gz
-  sha256: a730327c1f8d053d29e558636736b7b66d0671a009e0004720b869d2c76ff32c
+  sha256: fff39d5df295b937cdad57b73d4e06e925f69e68784ef58b5dfcd3cf500931c1
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -41,18 +41,13 @@ test:
 about:
   home: https://cran.r-project.org/web/packages/MALDIquant/index.html
   license: GPL (>= 3)
-  summary: A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight
-    (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly
-    used plotting and processing methods it includes distinctive features, namely baseline
-    subtraction methods such as morphological filters (TopHat) or the statistics-sensitive
-    non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping
-    functions, handling of replicated measurements as well as allowing spectra with
-    different resolutions.
+  summary: A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters
+    (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
-   recipe-maintainers:
+  recipe-maintainers:
     - conda-forge/r
     - dpryan79
     - MathiasHaudgaard
