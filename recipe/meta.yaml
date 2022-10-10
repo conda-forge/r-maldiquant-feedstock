@@ -1,5 +1,4 @@
 {% set version = "1.21" %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,43 +7,47 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: MALDIquant_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/MALDIquant_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/MALDIquant/MALDIquant_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/MALDIquant_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/MALDIquant/MALDIquant_{{ version }}.tar.gz
   sha256: 0771f82034aa6a77af67f3572c900987b7e6b578d04d707c6e06689d021a2ff8
 
 build:
   merge_build_host: true  # [win]
   number: 1
-  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
-
   run:
     - r-base
+    - {{ native }}gcc-libs         # [win]
 
 test:
   commands:
-    - $R -e "library('MALDIquant')"  # [not win]
+    - $R -e "library('MALDIquant')"           # [not win]
     - "\"%R%\" -e \"library('MALDIquant')\""  # [win]
 
 about:
   home: https://cran.r-project.org/web/packages/MALDIquant/index.html
-  license: GPL (>= 3)
+  license: GPL-3.0-or-later
   summary: A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters
     (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.
   license_family: GPL3
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
