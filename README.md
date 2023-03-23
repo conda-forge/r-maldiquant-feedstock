@@ -1,11 +1,22 @@
+About r-maldiquant-feedstock
+============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-maldiquant-feedstock/blob/main/LICENSE.txt)
+
 About r-maldiquant
-==================
+------------------
 
 Home: https://cran.r-project.org/web/packages/MALDIquant/index.html
 
 Package license: GPL-3.0-or-later
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-maldiquant-feedstock/blob/main/LICENSE.txt)
+Summary: A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.
+About r-maldiquant
+------------------
+
+Home: https://cran.r-project.org/web/packages/MALDIquant/index.html
+
+Package license: GPL-3.0-or-later
 
 Summary: A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.
 
